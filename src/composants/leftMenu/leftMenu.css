@@ -19,6 +19,12 @@
 .list-service{
     list-style: none;
 }
+.bouton-service{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    color:rgb(197, 189, 189)
+}
 .option-service{
     margin:10px;
 }

@@ -4,8 +4,8 @@ import Map from "./composants/Map";
 export default function App() {
   return (
     <div>
-      <Map />
       <LeftMenu />
+      <Map />
     </div>
   );
 }
