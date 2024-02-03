@@ -7,6 +7,19 @@ const containerStyle = {
   height: "100%",
 };
 
+const mapStyles = [
+  [
+    {
+      featureType: "poi.business",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+  ],
+];
+
 export default function Map({ type, centre, locations }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -15,7 +28,7 @@ export default function Map({ type, centre, locations }) {
 
   const [map, setMap] = useState();
 
-  const lieu = typesLieux[type];
+  const lieu = typesLieux.find(l => l.type === type);
 
   const optionsCercle = { strokeColor: lieu.contour, strokeOpacity: 0.8, fillOpacity: 0.4, fillColor: lieu.fill };
 
@@ -25,6 +38,7 @@ export default function Map({ type, centre, locations }) {
       options={{ disableDefaultUI: true }}
       center={centre}
       zoom={12}
+      stylers={mapStyles}
       onLoad={(m) => setMap(m)}
       onUnmount={() => setMap()}
     >
