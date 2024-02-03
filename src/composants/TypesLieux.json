@@ -1,0 +1,20 @@
+{
+  "sante": {
+    "nom": "Services de santé",
+    "contour": "#CB1800",
+    "fill": "#FF7C5F",
+    "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/hospitals.png"
+  },
+  "ecole": {
+    "nom": "Services scolaires",
+    "contour": "#00CB51",
+    "fill": "#5FFF9F",
+    "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/rangerstation.png"
+  },
+  "epicerie": {
+    "nom": "Services d'alimentation",
+    "contour": "#CBB600",
+    "fill": "#FCFF5F",
+    "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/grocerystore.png"
+  }
+}
