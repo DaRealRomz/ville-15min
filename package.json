@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/DaRealRomz/ville-15min#readme",
   "dependencies": {
-    "serve": "^14.2.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "eslint": "^8.2.0",
@@ -34,9 +35,8 @@
     "parcel": "^2.11.0",
     "prettier": "^3.2.4",
     "process": "^0.11.10",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "serve": "^14.2.1"
   },
   "prettier": {
     "endOfLine": "auto"
