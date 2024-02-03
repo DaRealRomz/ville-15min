@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/DaRealRomz/ville-15min#readme",
   "dependencies": {
+    "@react-google-maps/api": "^2.19.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
