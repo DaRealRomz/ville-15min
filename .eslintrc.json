@@ -1,15 +1,20 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": ["airbnb", "airbnb/hooks", "prettier"],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
-      "react/react-in-jsx-scope": "off"
-    },
-    "root": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
+  },
+  "root": true
 }

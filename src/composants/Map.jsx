@@ -7,12 +7,7 @@ const containerStyle = {
   height: "100%",
 };
 
-const center = {
-  lat: 45.50493439044056,
-  lng: -73.61313521788279,
-};
-
-export default function Map() {
+export default function Map({ type, centre, locations }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.MAPS_API_KEY,
@@ -20,7 +15,7 @@ export default function Map() {
 
   const [map, setMap] = useState();
 
-  const lieu = typesLieux.ecole;
+  const lieu = typesLieux[type];
 
   const optionsCercle = { strokeColor: lieu.contour, strokeOpacity: 0.8, fillOpacity: 0.4, fillColor: lieu.fill };
 
@@ -28,21 +23,24 @@ export default function Map() {
     <GoogleMap
       mapContainerStyle={containerStyle}
       options={{ disableDefaultUI: true }}
-      center={center}
+      center={centre}
       zoom={12}
       onLoad={(m) => setMap(m)}
       onUnmount={() => setMap()}
     >
-      <Circle options={optionsCercle} center={center} radius={1500} map={map} />
-
-      <Marker
-        position={center}
-        map={map}
-        options={{ title: "Poly!" }}
-        icon={{
-          url: lieu.icon,
-        }}
-      />
+      {locations.map((position) => (
+        <>
+          <Circle options={optionsCercle} center={position} radius={1500} map={map} />
+          <Marker
+            position={position}
+            map={map}
+            options={{ title: "Poly!" }}
+            icon={{
+              url: lieu.icon,
+            }}
+          />
+        </>
+      ))}
     </GoogleMap>
   ) : (
     <h1>Chargement...</h1>
