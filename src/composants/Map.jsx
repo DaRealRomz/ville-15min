@@ -3,8 +3,8 @@ import { useState } from "react";
 import typesLieux from "./TypesLieux.json";
 
 const containerStyle = {
-  width: "400px",
-  height: "400px",
+  width: "100%",
+  height: "100%",
 };
 
 const center = {
