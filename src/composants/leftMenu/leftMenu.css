@@ -70,15 +70,3 @@
 .div-boutons {
     display: flex;
 }
-
-#transport-commun {
-    margin-top: auto;
-    background-color: rgba(227, 223, 223, 0.856);
-    border-radius: 0 0 10px 10px;
-
-
-}
-
-.checkbox2 {
-    margin: 10px;
-}

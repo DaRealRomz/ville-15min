@@ -19,13 +19,6 @@ export default function LeftMenu({ changerType }) {
             ))}
           </div>
         </div>
-        <div id="transport-commun">
-          <input id="velo" type="checkbox" className="checkbox2" />
-          <label htmlFor="velo"> Présence de vélo</label>
-          <br />
-          <input id="transport" type="checkbox" className="checkbox2" />
-          <label htmlFor="transport"> Présence de transport en commun</label>
-        </div>
       </div>
       <button id="menu-toggle" type="button" onClick={() => setRetracted((isRetracted) => !isRetracted)}>{retracted ? ">" : "x"}</button>
     </div>

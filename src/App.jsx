@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LeftMenu from "./composants/leftMenu/LeftMenu";
+import RightMenu from "./composants/rightMenu/RightMenu";
 import Map from "./composants/Map";
 
 const poly = {
@@ -14,6 +15,7 @@ export default function App() {
     <div className="h-screen">
       <Map type={type} centre={poly} />
       <LeftMenu changerType={setType} />
+      <RightMenu changerType={setType} />
     </div>
   );
 }
