@@ -15,8 +15,8 @@ export default function App() {
   return (
     <div className="h-screen">
       <Map type={type} centre={poly} radius={radius} />
-      <LeftMenu changerType={setType} changerRayon={setRadius} />
-      <RightMenu changerType={setType} />
+      <LeftMenu changerType={setType}  />
+      <RightMenu changerType={setType} changerRayon={setRadius}/>
     </div>
   );
 }

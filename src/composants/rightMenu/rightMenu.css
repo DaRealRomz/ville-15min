@@ -39,9 +39,12 @@
 #transport-commun {
     background-color: rgba(227, 223, 223, 0.856);
     border-radius: 10px 0 0 10px;
-    margin:auto;
+    margin: 10px 0 5px 20px;
 }
 
 .checkbox2 {
     margin: 10px;
+}
+#scroll-bar{
+    margin-left:20px;
 }

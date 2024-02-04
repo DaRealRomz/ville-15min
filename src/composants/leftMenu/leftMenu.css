@@ -1,3 +1,8 @@
+root {
+    --main-button-color: rgb(203, 226, 246);
+
+}
+
 #left-menu-container {
     position: fixed;
     left: 0;
@@ -19,7 +24,11 @@
     grid-row-end: 3;
     border-radius: 10px 0 10px 10px;
     background-color: white;
-    box-shadow:1px 9px 15px 5px rgba(0,0,0,0.64);
+    box-shadow: 1px 9px 15px 5px rgba(157, 204, 216, 0.64);
+    background-color: rgba(193, 209, 230, 0.);
+
+    backdrop-filter: blur(5px);
+    border: solid white;
 }
 
 #menu-toggle {
@@ -31,7 +40,7 @@
     width: 20px;
     height: 50px;
     border-radius: 0 5px 5px 0;
-    background-color: rgb(188, 188, 188);
+    background-color:var(--main-button-color);
     border: rgb(89, 89, 89);
     cursor: pointer;
 
@@ -50,7 +59,7 @@
 }
 
 .bouton-service {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
