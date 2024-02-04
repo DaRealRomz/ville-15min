@@ -18,12 +18,30 @@
     "keywords": ["ecole", "college", "school", "cegep"]
   },
   {
-    "nom": "Services d'alimentation",
+    "nom": "Services alimentaires",
     "contour": "#CBB600",
     "fill": "#FCFF5F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/grocerystore.png",
     "type": "epicerie",
     "filter": ["supermarket"],
+    "keywords": null
+  },
+  {
+    "nom": "Espaces naturels",
+    "contour": "#00CB51",
+    "fill": "#5FFF9F",
+    "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/tree.png",
+    "type": "parc",
+    "filter": ["park"],
+    "keywords": null
+  },
+  {
+    "nom": "Banques et caisses",
+    "contour": "#CBB600",
+    "fill": "#FCFF5F",
+    "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/dollar.png",
+    "type": "banque",
+    "filter": ["bank"],
     "keywords": null
   }
 ]
