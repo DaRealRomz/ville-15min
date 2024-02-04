@@ -11,10 +11,13 @@ export default function RightMenu({ changerType, changerRayon }) {
     const transportChkbx = document.getElementById('transport');
 
     if (transportChkbx.checked) {
+      console.log('transport');
       changerRayon(4500);
-    } else if (veloChkbx) {
+    } else if (veloChkbx.checked) {
+      console.log('velo');
       changerRayon(3500);
     } else {
+      console.log('autre');
       changerRayon(rayonMarche);
     }
   }
