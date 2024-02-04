@@ -15,7 +15,9 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-restricted-syntax": "off"
   },
   "root": true
 }

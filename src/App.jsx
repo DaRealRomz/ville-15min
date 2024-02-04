@@ -1,12 +1,12 @@
 import { useState } from "react";
 import LeftMenu from "./composants/leftMenu/LeftMenu";
 import RightMenu from "./composants/rightMenu/RightMenu";
-import Map from "./composants/Map";
+import Map from "./composants/Map/Map";
 
 const poly = {
   lat: 45.5047939,
-  lng: -73.615758
-}
+  lng: -73.615758,
+};
 
 export default function App() {
   const [type, setType] = useState("sante");

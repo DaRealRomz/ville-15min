@@ -5,7 +5,8 @@
     "fill": "#FF7C5F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/hospitals.png",
     "type": "sante",
-    "filter": ["hospital"]
+    "filter": ["hospital"],
+    "keywords": ["hopital", "hospital"]
   },
   {
     "nom": "Services scolaires",
@@ -13,7 +14,8 @@
     "fill": "#5FFF9F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/rangerstation.png",
     "type": "ecole",
-    "filter": ["school"]
+    "filter": ["primary_school"],
+    "keywords": ["ecole", "college", "school", "cegep"]
   },
   {
     "nom": "Services d'alimentation",
@@ -21,6 +23,7 @@
     "fill": "#FCFF5F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/grocerystore.png",
     "type": "epicerie",
-    "filter": ["supermarket"]
+    "filter": ["supermarket"],
+    "keywords": null
   }
 ]
