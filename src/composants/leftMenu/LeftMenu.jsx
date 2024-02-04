@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./leftMenu.css";
 import typesLieux from "../TypesLieux.json";
 
-export default function LeftMenu({ changerType }) {
+export default function LeftMenu({ changerType, changerRayon }) {
   const [retracted, setRetracted] = useState(false);
 
   return (

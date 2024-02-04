@@ -23,7 +23,7 @@ const mapStyles = [
   ],
 ];
 
-export default function Map({ type, centre }) {
+export default function Map({ type, centre, radius }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.MAPS_API_KEY,
@@ -69,7 +69,7 @@ export default function Map({ type, centre }) {
     >
       {locations.map((location) => (
         <Fragment key={location.id}>
-          <Circle options={optionsCercle} center={location.location} radius={1500} map={map} />
+          <Circle options={optionsCercle} center={location.location} radius={radius} map={map} />
           <Marker
             position={location.location}
             map={map}
