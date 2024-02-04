@@ -8,7 +8,6 @@ export default function LeftMenu({ changerType, setSearch, score }) {
   return (
     <div id="left-menu-container" style={{ transform: retracted ? "translateX(calc(-100% + 40px))" : "" }}>
       <div id="left-menu-interior">
-        <p>{score}</p>
         <input
           id="input-recherche"
           type="search"
@@ -36,6 +35,7 @@ export default function LeftMenu({ changerType, setSearch, score }) {
             </button>
           ))}
         </div>
+        <p style={{ marginLeft: "4em", marginTop: "2em" }}>Score: {Math.round(score * 10) / 10}</p>
       </div>
       <button id="menu-toggle" type="button" onClick={() => setRetracted((isRetracted) => !isRetracted)}>
         {retracted ? ">" : "x"}

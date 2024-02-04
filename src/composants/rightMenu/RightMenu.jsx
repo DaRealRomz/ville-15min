@@ -26,13 +26,13 @@ export default function RightMenu({ changerRayon }) {
           <input id="velo" type="checkbox" className="checkbox2" onClick={setRayon} />
           <label htmlFor="velo"> Présence de vélo</label>
           <br />
-          <input id="transport" type="checkbox" className="checkbox2" onClick={setRayon} /><s></s>
+          <input id="transport" type="checkbox" className="checkbox2" onClick={setRayon} />
           <label htmlFor="transport"> Présence de transport en commun</label>
           <br />
 
         </div>
         <div id="scroll-bar">
-          <p>Temps de déplacement:</p>
+          <p>Vitesse de marche</p>
           <input type="range" min="15" max="30" defaultValue={15} onChange={(e) => {
               setRayonMarche(1500 * (e.target.value / 15));
               setRayon();
