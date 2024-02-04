@@ -4,20 +4,23 @@
     "contour": "#CB1800",
     "fill": "#FF7C5F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/hospitals.png",
-    "type": "sante"
+    "type": "sante",
+    "filter": ["hospital"]
   },
   {
     "nom": "Services scolaires",
     "contour": "#00CB51",
     "fill": "#5FFF9F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/rangerstation.png",
-    "type": "ecole"
+    "type": "ecole",
+    "filter": ["school"]
   },
   {
     "nom": "Services d'alimentation",
     "contour": "#CBB600",
     "fill": "#FCFF5F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/grocerystore.png",
-    "type": "epicerie"
+    "type": "epicerie",
+    "filter": ["supermarket"]
   }
 ]
