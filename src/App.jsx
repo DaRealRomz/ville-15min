@@ -12,11 +12,12 @@ export default function App() {
   const [type, setType] = useState("sante");
   const [radius, setRadius] = useState(1500);
   const [search, setSearch] = useState("");
+  const [score, setScore] = useState(0);
 
   return (
     <div className="h-screen">
-      <Map type={type} centre={poly} radius={radius} search={search} />
-      <LeftMenu changerType={setType} setSearch={setSearch} />
+      <Map type={type} centre={poly} radius={radius} search={search} setScore={setScore} />
+      <LeftMenu changerType={setType} setSearch={setSearch} score={score} />
       <RightMenu changerRayon={setRadius}/>
     </div>
   );

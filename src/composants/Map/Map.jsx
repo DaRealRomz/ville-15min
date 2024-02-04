@@ -1,5 +1,5 @@
 import { GoogleMap, Marker, Polygon, useJsApiLoader } from "@react-google-maps/api";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import typesLieux from "../TypesLieux.json";
 import { degreesLatToMeters, degreesLngToMeters, metersToDegreesLat, metersToDegreesLng } from "./coordinates";
 import getPlaces from "./places";
@@ -28,7 +28,7 @@ const createCircle = (location, radius) => {
   return points;
 };
 
-export default function Map({ type, centre, radius, search }) {
+export default function Map({ type, centre, radius, search, setScore }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.MAPS_API_KEY,
@@ -73,7 +73,7 @@ export default function Map({ type, centre, radius, search }) {
     fillColor: lieu.fill,
   };
 
-  function pointAleatoire() {
+  const pointAleatoire = useCallback(() => {
     if (!bounds) return centre;
     const ne = bounds.getNorthEast();
     const sw = bounds.getSouthWest();
@@ -81,9 +81,9 @@ export default function Map({ type, centre, radius, search }) {
       lng: sw.lng() + Math.random() * (ne.lng() - sw.lng()),
       lat: sw.lat() + Math.random() * (ne.lat() - sw.lat()),
     };
-  }
+  }, [bounds, centre]);
 
-  function plusProche(position) {
+  const plusProche = useCallback((position) => {
     let plusPetiteDistance = Infinity;
     for (const pos of locations) {
       const distanceLatDeg = Math.abs(pos.location.lat() - position.lat);
@@ -94,16 +94,16 @@ export default function Map({ type, centre, radius, search }) {
       if (dist < plusPetiteDistance) plusPetiteDistance = dist;
     }
     return plusPetiteDistance;
-  }
+  }, [locations]);
 
-  function calculerScore() {
+  useEffect(() => {
     let somme = 0;
     for (let index = 0; index < 100; index++) {
       const point = pointAleatoire();
       somme += plusProche(point);
     }
-    return somme / 100;
-  }
+    setScore(somme / 10000);
+  }, [pointAleatoire, plusProche, setScore]);
 
   return isLoaded ? (
     <GoogleMap
@@ -115,7 +115,6 @@ export default function Map({ type, centre, radius, search }) {
       onUnmount={() => setMap(null)}
       onBoundsChanged={() => setBounds(map?.getBounds())}
     >
-      <h1>{calculerScore()}</h1>
       <Polygon
         paths={locations.map(({ location }) => createCircle(location, radius))}
         options={optionsCercle}
