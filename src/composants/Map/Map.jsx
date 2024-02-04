@@ -83,18 +83,21 @@ export default function Map({ type, centre, radius, search, setScore }) {
     };
   }, [bounds, centre]);
 
-  const plusProche = useCallback((position) => {
-    let plusPetiteDistance = Infinity;
-    for (const pos of locations) {
-      const distanceLatDeg = Math.abs(pos.location.lat() - position.lat);
-      const distanceLngDeg = Math.abs(pos.location.lng() - position.lng);
-      const distLat = degreesLatToMeters(distanceLatDeg);
-      const distLng = degreesLngToMeters(distanceLngDeg, position.lat);
-      const dist = Math.sqrt(distLat ** 2 + distLng ** 2);
-      if (dist < plusPetiteDistance) plusPetiteDistance = dist;
-    }
-    return plusPetiteDistance;
-  }, [locations]);
+  const plusProche = useCallback(
+    (position) => {
+      let plusPetiteDistance = Infinity;
+      for (const pos of locations) {
+        const distanceLatDeg = Math.abs(pos.location.lat() - position.lat);
+        const distanceLngDeg = Math.abs(pos.location.lng() - position.lng);
+        const distLat = degreesLatToMeters(distanceLatDeg);
+        const distLng = degreesLngToMeters(distanceLngDeg, position.lat);
+        const dist = Math.sqrt(distLat ** 2 + distLng ** 2);
+        if (dist < plusPetiteDistance) plusPetiteDistance = dist;
+      }
+      return plusPetiteDistance;
+    },
+    [locations],
+  );
 
   useEffect(() => {
     let somme = 0;
@@ -102,8 +105,8 @@ export default function Map({ type, centre, radius, search, setScore }) {
       const point = pointAleatoire();
       somme += plusProche(point);
     }
-    setScore(somme / 10000);
-  }, [pointAleatoire, plusProche, setScore]);
+    setScore(somme / 100 / (radius / 15));
+  }, [pointAleatoire, plusProche, setScore, radius]);
 
   return isLoaded ? (
     <GoogleMap
