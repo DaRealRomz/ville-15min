@@ -19,7 +19,9 @@ root {
 
 #left-menu-interior {
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
+    overflow: hidden;
     grid-row-start: 1;
     grid-row-end: 3;
     border-radius: 10px 0 10px 10px;
@@ -43,11 +45,10 @@ root {
     background-color: white;
     border: rgb(255, 255, 255);
     cursor: pointer;
-
 }
 
 #div-boutons {
-    margin-right: 10px;
+    /* margin-right: 20px; */
 }
 
 #input-recherche {
@@ -60,24 +61,24 @@ root {
 }
 
 .bouton-service {
+    transition: all 0.1s;
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    border: none;
-    border-radius: 0 15px 15px 0;
+    border: white 0px;
     height: 50px;
     width: 100%;
-    background-color: rgba(213, 220, 226, 0.7);
-    border: solid white;
+    background-color: rgba(213, 220, 226, 0.1);
+    border-left: none;
     margin-top: 5px;
     padding-left: 60px;
+
 }
 
-.list-service {
-    list-style: none;
-}
-
-.div-boutons {
-    display: flex;
+.bouton-service:hover {
+    background-color: rgb(198, 234, 249);
+    border-top: solid white;
+    border-bottom: solid white;
 }

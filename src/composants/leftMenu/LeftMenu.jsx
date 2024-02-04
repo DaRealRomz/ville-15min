@@ -9,20 +9,25 @@ export default function LeftMenu({ changerType }) {
     <div id="left-menu-container" style={{ transform: retracted ? "translateX(calc(-100% + 40px))" : "" }}>
       <div id="left-menu-interior">
         <input id="input-recherche" type="search" placeholder="Rechercher un lieu" />
+
         <div id="div-boutons">
-          <div id="div-boutons">
-            {typesLieux.map((lieu) => (
-              <button key={lieu.type} className="bouton-service" type="button" onClick={() => changerType(lieu.type)}>
-                <img src={lieu.icon} alt="" />
-                {lieu.nom}
-              </button>
-            ))}
-          </div>
+          {typesLieux.map((lieu) => (
+            <button key={lieu.type} className="bouton-service" type="button" onClick={() => {
+              changerType(lieu.type);
+            }
+            }>
+              <img src={lieu.icon} alt="" />
+              {lieu.nom}
+            </button>
+          ))}
+
         </div>
       </div>
       <button id="menu-toggle" type="button" onClick={() => setRetracted((isRetracted) => !isRetracted)}>
         {retracted ? ">" : "x"}
       </button>
     </div>
+    
   );
+
 }

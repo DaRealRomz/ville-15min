@@ -23,11 +23,11 @@ export default function RightMenu({ changerRayon }) {
     <div id="right-menu-container" style={{ transform: retracted ? "translateX(calc(100% - 40px))" : "" }}>
       <div id="right-menu-interior">
         <div id="transport-commun">
-          <label htmlFor="velo"> Présence de vélo</label>
           <input id="velo" type="checkbox" className="checkbox2" onClick={setRayon} />
+          <label htmlFor="velo"> Présence de vélo</label>
           <br />
+          <input id="transport" type="checkbox" className="checkbox2" onClick={setRayon} /><s></s>
           <label htmlFor="transport"> Présence de transport en commun</label>
-          <input id="transport" type="checkbox" className="checkbox2" onClick={setRayon} />
           <br />
 
         </div>
