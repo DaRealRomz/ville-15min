@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./rightMenu.css";
 
-export default function RightMenu({ changerType, changerRayon }) {
+export default function RightMenu({ changerRayon }) {
   const [retracted, setRetracted] = useState(false);
 
-  let rayonMarche = 1500;
+  const [rayonMarche, setRayonMarche] = useState(1500);
 
   function setRayon() {
     const veloChkbx = document.getElementById('velo');
@@ -33,7 +33,11 @@ export default function RightMenu({ changerType, changerRayon }) {
         </div>
         <div id="scroll-bar">
           <p>Temps de déplacement:</p>
-          <input type="range" min="15" max="30" value="15" /></div>
+          <input type="range" min="15" max="30" defaultValue={15} onChange={(e) => {
+              setRayonMarche(1500 * (e.target.value / 15));
+              setRayon();
+            }
+          } /></div>
         </div>
       <button id="menu-toggle-right" type="button" onClick={() => setRetracted((isRetracted) => !isRetracted)}>{retracted ? ">" : "x"}</button>
     </div>
