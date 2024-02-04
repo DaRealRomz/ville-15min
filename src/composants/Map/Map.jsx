@@ -1,6 +1,6 @@
 import { GoogleMap, Marker, Polygon, useJsApiLoader } from "@react-google-maps/api";
 import { Fragment, useEffect, useState } from "react";
-import typesLieux from "./TypesLieux.json";
+import typesLieux from "../TypesLieux.json";
 
 const EARTH_RADIUS = 6371000;
 const DEBOUNCE_DELAY = 50;
@@ -25,6 +25,19 @@ const createCircle = (location, radius) => {
   return points;
 };
 
+const matchesKeyword = (name, keywords) => {
+  const normalized = name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+  for (const keyword of keywords) {
+    if (normalized.includes(keyword)) {
+      return true;
+    }
+  }
+  return false;
+};
+
 export default function Map({ type, centre, radius }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -45,11 +58,13 @@ export default function Map({ type, centre, radius }) {
       service.nearbySearch({ bounds, type: lieu.filter }, (results, status) => {
         if (status === window.google.maps.places.PlacesServiceStatus.OK)
           setLocations(
-            results.map((result) => ({
-              id: result.reference,
-              name: result.name,
-              location: result.geometry.location,
-            })),
+            results
+              .filter((result) => matchesKeyword(result.name, lieu.keywords))
+              .map((result) => ({
+                id: result.reference,
+                name: result.name,
+                location: result.geometry.location,
+              })),
           );
       });
     }, DEBOUNCE_DELAY);
