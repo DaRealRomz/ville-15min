@@ -2,8 +2,10 @@ import { useState } from "react";
 import "./leftMenu.css";
 import typesLieux from "../TypesLieux.json";
 
-export default function LeftMenu({ changerType }) {
+export default function LeftMenu({ changerType}) {
   const [retracted, setRetracted] = useState(false);
+
+  
 
   return (
     <div id="left-menu-container" style={{ transform: retracted ? "translateX(calc(-100% + 40px))" : "" }}>
@@ -19,6 +21,7 @@ export default function LeftMenu({ changerType }) {
             ))}
           </div>
         </div>
+        
       </div>
       <button id="menu-toggle" type="button" onClick={() => setRetracted((isRetracted) => !isRetracted)}>{retracted ? ">" : "x"}</button>
     </div>
