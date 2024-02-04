@@ -11,19 +11,6 @@ const containerStyle = {
   height: "100%",
 };
 
-const mapStyles = [
-  [
-    {
-      featureType: "poi.business",
-      stylers: [
-        {
-          visibility: "off",
-        },
-      ],
-    },
-  ],
-];
-
 const createCircle = (location, radius) => {
   const latRadius = ((radius / EARTH_RADIUS) * 180) / Math.PI;
   const lngRadius = latRadius / Math.cos((location.lat() * Math.PI) / 180);
@@ -81,13 +68,21 @@ export default function Map({ type, centre, radius }) {
     fillColor: lieu.fill,
   };
 
+  // function pointAleatoire() {
+  //   return centre;
+  // }
+
+  // function plusProche(position, type) {
+  //   const pointsDuType = locations.filter((endroit) => endroit.type === type);
+  //   for ()
+  // }
+
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       options={{ disableDefaultUI: true }}
       center={centre}
       zoom={12}
-      stylers={mapStyles}
       onLoad={(m) => setMap(m)}
       onUnmount={() => setMap(null)}
       onBoundsChanged={() => setBounds(map?.getBounds())}
