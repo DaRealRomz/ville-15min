@@ -59,7 +59,7 @@ export default function Map({ type, centre, radius }) {
         if (status === window.google.maps.places.PlacesServiceStatus.OK)
           setLocations(
             results
-              .filter((result) => matchesKeyword(result.name, lieu.keywords))
+              .filter((result) => !lieu.keywords || matchesKeyword(result.name, lieu.keywords))
               .map((result) => ({
                 id: result.reference,
                 name: result.name,
