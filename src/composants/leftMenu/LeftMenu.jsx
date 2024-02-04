@@ -2,28 +2,26 @@ import { useState } from 'react';
 import './leftMenu.css';
 import typesLieux from "../TypesLieux.json";
 
-export default function LeftMenu() {
+export default function LeftMenu({changerType}) {
 
     let [retracted, setRetracted] = useState(false);
 
 
 
     return (<>
-        <div id='left-menu-container' style={{ transform: retracted ? 'translateX(calc(-100% + 30px))' : '' }}>
+        <div id='left-menu-container' style={{ transform: retracted ? 'translateX(calc(-100% + 40px))' : '' }}>
             <div id='left-menu-interior' >
                 <input id="input-recherche" type="search" placeholder="  Rechercher un lieu" />
                 <div id="div-boutons">
-                    {/* <div id="div-boutons">
-                    <>
-                    {
-                        typesLieux.map((lieu) => <button class="bouton-service" type="button">{lieu.nom}</button>)
-                    }
-                    </>
-                 
-                </div> */}
-                    <button class="bouton-service" type="button"><img src="https://maps.gstatic.com/mapfiles/ms2/micons/hospitals.png" />Hôpitaux</button>
-                    <button class="bouton-service" type="button"><img src="https://maps.gstatic.com/mapfiles/ms2/micons/rangerstation.png" />Épiceries</button>
-                    <button class="bouton-service" type="button"><img src="https://maps.gstatic.com/mapfiles/ms2/micons/grocerystore.png" />Écoles</button>
+                    <div id="div-boutons">
+                        <>
+                            {
+                                typesLieux.map((lieu) => <button class="bouton-service" type="button" onClick={()=>changerType(lieu.type)}><img src={lieu.icon} />{lieu.nom}</button>)
+                            }
+                        </>
+
+                    </div>
+                    
                 </div>
                 <div id="transport-commun">
                     <input type="checkbox" class="checkbox2" />

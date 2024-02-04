@@ -28,7 +28,7 @@ export default function App() {
   return (
     <div className="h-screen">
       <Map type={type} locations={locations} centre={locations[0]} />
-      <LeftMenu changer={setType} />
+      <LeftMenu changerType={setType} />
     </div>
   );
 }
