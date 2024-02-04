@@ -1,8 +1,9 @@
-import { Circle, GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker, Polygon, useJsApiLoader } from "@react-google-maps/api";
 import { Fragment, useEffect, useState } from "react";
 import typesLieux from "./TypesLieux.json";
 
-const DEBOUNCE_DELAY = 500;
+const EARTH_RADIUS = 6371000;
+const DEBOUNCE_DELAY = 50;
 const libraries = ["places"];
 
 const containerStyle = {
@@ -22,6 +23,20 @@ const mapStyles = [
     },
   ],
 ];
+
+const createCircle = (location, radius) => {
+  const latRadius = ((radius / EARTH_RADIUS) * 180) / Math.PI;
+  const lngRadius = latRadius / Math.cos((location.lat() * Math.PI) / 180);
+
+  const points = [];
+  for (let i = 0; i < 50; i++) {
+    const angle = (i / 50) * 2 * Math.PI;
+    const lng = location.lng() + Math.cos(angle) * lngRadius;
+    const lat = location.lat() + Math.sin(angle) * latRadius;
+    points.push({ lng, lat });
+  }
+  return points;
+};
 
 export default function Map({ type, centre, radius }) {
   const { isLoaded } = useJsApiLoader({
@@ -54,7 +69,17 @@ export default function Map({ type, centre, radius }) {
     return () => clearTimeout(timeout);
   }, [map, bounds, lieu]);
 
-  const optionsCercle = { strokeColor: lieu.contour, strokeOpacity: 0.8, fillOpacity: 0.4, fillColor: lieu.fill };
+  useEffect(() => {
+    setLocations([]);
+  }, [type]);
+
+  const optionsCercle = {
+    strokeColor: lieu.contour,
+    strokeOpacity: 0.8,
+    strokeWeight: 0,
+    fillOpacity: 0.4,
+    fillColor: lieu.fill,
+  };
 
   return isLoaded ? (
     <GoogleMap
@@ -67,9 +92,13 @@ export default function Map({ type, centre, radius }) {
       onUnmount={() => setMap(null)}
       onBoundsChanged={() => setBounds(map?.getBounds())}
     >
+      <Polygon
+        paths={locations.map(({ location }) => createCircle(location, radius))}
+        options={optionsCercle}
+        map={map}
+      />
       {locations.map((location) => (
         <Fragment key={location.id}>
-          <Circle options={optionsCercle} center={location.location} radius={radius} map={map} />
           <Marker
             position={location.location}
             map={map}

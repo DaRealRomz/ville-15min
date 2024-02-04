@@ -13,7 +13,7 @@
     "fill": "#5FFF9F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/rangerstation.png",
     "type": "ecole",
-    "filter": ["school"]
+    "filter": ["secondary_school"]
   },
   {
     "nom": "Services d'alimentation",
