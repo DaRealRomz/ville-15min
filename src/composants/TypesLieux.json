@@ -5,8 +5,13 @@
     "fill": "#FF7C5F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/hospitals.png",
     "type": "sante",
-    "filter": ["hospital"],
-    "keywords": ["hopital", "hospital"]
+    "filter": [
+      "hospital"
+    ],
+    "keywords": [
+      "hopital",
+      "hospital"
+    ]
   },
   {
     "nom": "Services scolaires",
@@ -14,8 +19,16 @@
     "fill": "#5FFF9F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/rangerstation.png",
     "type": "ecole",
-    "filter": ["primary_school"],
-    "keywords": ["ecole", "college", "school", "cegep"]
+    "filter": [
+      "primary_school",
+      "secondary_school"
+    ],
+    "keywords": [
+      "ecole",
+      "college",
+      "school",
+      "cegep"
+    ]
   },
   {
     "nom": "Services alimentaires",
@@ -23,7 +36,9 @@
     "fill": "#FCFF5F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/grocerystore.png",
     "type": "epicerie",
-    "filter": ["supermarket"],
+    "filter": [
+      "supermarket"
+    ],
     "keywords": null
   },
   {
@@ -32,7 +47,9 @@
     "fill": "#5FFF9F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/tree.png",
     "type": "parc",
-    "filter": ["park"],
+    "filter": [
+      "park"
+    ],
     "keywords": null
   },
   {
@@ -41,7 +58,20 @@
     "fill": "#FCFF5F",
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/dollar.png",
     "type": "banque",
-    "filter": ["bank"],
+    "filter": [
+      "bank"
+    ],
+    "keywords": null
+  },
+  {
+    "nom": "Transports en commmun",
+    "contour": "#005DCB",
+    "fill": "#5F9FFF",
+    "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/bus.png",
+    "type": "transports",
+    "filter": [
+      "transit_station"
+    ],
     "keywords": null
   }
 ]
