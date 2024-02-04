@@ -1,7 +1,7 @@
 import { GoogleMap, Marker, Polygon, useJsApiLoader } from "@react-google-maps/api";
 import { Fragment, useEffect, useState } from "react";
 import typesLieux from "../TypesLieux.json";
-import { metersToDegreesLat, metersToDegreesLng } from "./coordinates";
+import { degreesLatToMeters, degreesLngToMeters, metersToDegreesLat, metersToDegreesLng } from "./coordinates";
 import getPlaces from "./places";
 
 const DEBOUNCE_DELAY = 50;
@@ -73,14 +73,37 @@ export default function Map({ type, centre, radius, search }) {
     fillColor: lieu.fill,
   };
 
-  // function pointAleatoire() {
-  //   return centre;
-  // }
+  function pointAleatoire() {
+    if (!bounds) return centre;
+    const ne = bounds.getNorthEast();
+    const sw = bounds.getSouthWest();
+    return {
+      lng: sw.lng() + Math.random() * (ne.lng() - sw.lng()),
+      lat: sw.lat() + Math.random() * (ne.lat() - sw.lat()),
+    };
+  }
 
-  // function plusProche(position, type) {
-  //   const pointsDuType = locations.filter((endroit) => endroit.type === type);
-  //   for ()
-  // }
+  function plusProche(position) {
+    let plusPetiteDistance = Infinity;
+    for (const pos of locations) {
+      const distanceLatDeg = Math.abs(pos.location.lat() - position.lat);
+      const distanceLngDeg = Math.abs(pos.location.lng() - position.lng);
+      const distLat = degreesLatToMeters(distanceLatDeg);
+      const distLng = degreesLngToMeters(distanceLngDeg, position.lat);
+      const dist = Math.sqrt(distLat ** 2 + distLng ** 2);
+      if (dist < plusPetiteDistance) plusPetiteDistance = dist;
+    }
+    return plusPetiteDistance;
+  }
+
+  function calculerScore() {
+    let somme = 0;
+    for (let index = 0; index < 100; index++) {
+      const point = pointAleatoire();
+      somme += plusProche(point);
+    }
+    return somme / 100;
+  }
 
   return isLoaded ? (
     <GoogleMap
@@ -92,6 +115,7 @@ export default function Map({ type, centre, radius, search }) {
       onUnmount={() => setMap(null)}
       onBoundsChanged={() => setBounds(map?.getBounds())}
     >
+      <h1>{calculerScore()}</h1>
       <Polygon
         paths={locations.map(({ location }) => createCircle(location, radius))}
         options={optionsCercle}
