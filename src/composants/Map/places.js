@@ -15,7 +15,7 @@ const matchesKeyword = (name, keywords) => {
 
 const getLocalPlaces = (service, bounds, type) =>
   new Promise((resolve) => {
-    service.nearbySearch({ bounds, type: [type] }, (results, status) => {
+    service.nearbySearch({ bounds, type: [type], fields: ["name", "geometry"] }, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         resolve(results);
       } else {

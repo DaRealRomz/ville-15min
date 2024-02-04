@@ -1,14 +1,19 @@
 import { useState } from "react";
-import "./leftMenu.css";
 import typesLieux from "../TypesLieux.json";
+import "./leftMenu.css";
 
-export default function LeftMenu({ changerType }) {
+export default function LeftMenu({ changerType, setSearch }) {
   const [retracted, setRetracted] = useState(false);
 
   return (
     <div id="left-menu-container" style={{ transform: retracted ? "translateX(calc(-100% + 40px))" : "" }}>
       <div id="left-menu-interior">
-        <input id="input-recherche" type="search" placeholder="Rechercher un lieu" />
+        <input id="input-recherche" type="search" placeholder="Rechercher une ville" onKeyDown={e => {
+          if (e.key === "Enter") {
+            setSearch(e.target.value);
+            e.target.value = "";
+          }
+        }} />
 
         <div id="div-boutons">
           {typesLieux.map((lieu) => (
@@ -27,7 +32,7 @@ export default function LeftMenu({ changerType }) {
         {retracted ? ">" : "x"}
       </button>
     </div>
-    
+
   );
 
 }

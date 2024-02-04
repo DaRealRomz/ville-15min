@@ -28,7 +28,7 @@ const createCircle = (location, radius) => {
   return points;
 };
 
-export default function Map({ type, centre, radius }) {
+export default function Map({ type, centre, radius, search }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.MAPS_API_KEY,
@@ -52,6 +52,18 @@ export default function Map({ type, centre, radius }) {
   useEffect(() => {
     setLocations([]);
   }, [type]);
+
+  useEffect(() => {
+    if (!map || !search) return;
+    const service = new window.google.maps.places.PlacesService(map);
+    service.findPlaceFromQuery({ query: search, fields: ["geometry"] }, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        for (let i = 0; i < results.length; i++) {
+          map.setCenter(results[0].geometry.location);
+        }
+      }
+    });
+  }, [map, search]);
 
   const optionsCercle = {
     strokeColor: lieu.contour,

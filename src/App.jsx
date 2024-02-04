@@ -11,11 +11,12 @@ const poly = {
 export default function App() {
   const [type, setType] = useState("sante");
   const [radius, setRadius] = useState(1500);
+  const [search, setSearch] = useState("");
 
   return (
     <div className="h-screen">
-      <Map type={type} centre={poly} radius={radius} />
-      <LeftMenu changerType={setType}  />
+      <Map type={type} centre={poly} radius={radius} search={search} />
+      <LeftMenu changerType={setType} setSearch={setSearch} />
       <RightMenu changerRayon={setRadius}/>
     </div>
   );
