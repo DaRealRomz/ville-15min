@@ -37,7 +37,7 @@ export default function RightMenu({ changerType, changerRayon }) {
         <div id="scroll-bar">
           <p>Temps de déplacement:</p>
           <input type="range" min="15" max="30" value="15" /></div>
-        </div>
+      </div>
       <button id="menu-toggle-right" type="button" onClick={() => setRetracted((isRetracted) => !isRetracted)}>{retracted ? ">" : "x"}</button>
     </div>
   );

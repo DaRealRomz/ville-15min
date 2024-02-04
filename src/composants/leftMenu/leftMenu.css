@@ -25,8 +25,8 @@ root {
     border-radius: 10px 0 10px 10px;
     background-color: white;
     box-shadow: 1px 9px 15px 5px rgba(157, 204, 216, 0.64);
-    background-color: rgba(193, 209, 230, 0.);
-
+    background: rgb(239, 251, 253);
+    background: linear-gradient(-40deg, rgba(239, 251, 253, 0.8) 3%, rgba(234, 248, 255, 0.7) 100%);
     backdrop-filter: blur(5px);
     border: solid white;
 }
@@ -40,8 +40,8 @@ root {
     width: 20px;
     height: 50px;
     border-radius: 0 5px 5px 0;
-    background-color:var(--main-button-color);
-    border: rgb(89, 89, 89);
+    background-color: white;
+    border: rgb(255, 255, 255);
     cursor: pointer;
 
 }
@@ -54,7 +54,8 @@ root {
     margin: 10px 10px 5px 10px;
     border-radius: 15px;
     height: 45px;
-    background-color: rgba(227, 223, 223, 0.856);
+    background-color: rgb(255, 255, 255, 0.7);
+    border: solid white;
     padding: 15px;
 }
 
@@ -68,7 +69,8 @@ root {
     border-radius: 0 15px 15px 0;
     height: 50px;
     width: 100%;
-    background-color: rgba(227, 223, 223, 0.856);
+    background-color: rgba(213, 220, 226, 0.7);
+    border: solid white;
     margin-top: 5px;
 }
 
