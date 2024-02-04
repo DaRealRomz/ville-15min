@@ -1,8 +1,9 @@
 import { GoogleMap, Marker, Polygon, useJsApiLoader } from "@react-google-maps/api";
 import { Fragment, useEffect, useState } from "react";
 import typesLieux from "../TypesLieux.json";
+import { metersToDegreesLat, metersToDegreesLng } from "./coordinates";
+import getPlaces from "./places";
 
-const EARTH_RADIUS = 6371000;
 const DEBOUNCE_DELAY = 50;
 const libraries = ["places"];
 
@@ -12,8 +13,10 @@ const containerStyle = {
 };
 
 const createCircle = (location, radius) => {
-  const latRadius = ((radius / EARTH_RADIUS) * 180) / Math.PI;
-  const lngRadius = latRadius / Math.cos((location.lat() * Math.PI) / 180);
+  // const latRadius = ((radius / EARTH_RADIUS) * 180) / Math.PI;
+  // const lngRadius = latRadius / Math.cos((location.lat() * Math.PI) / 180);
+  const latRadius = metersToDegreesLat(radius);
+  const lngRadius = metersToDegreesLng(radius, location.lat());
 
   const points = [];
   for (let i = 0; i < 50; i++) {
@@ -23,19 +26,6 @@ const createCircle = (location, radius) => {
     points.push({ lng, lat });
   }
   return points;
-};
-
-const matchesKeyword = (name, keywords) => {
-  const normalized = name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-  for (const keyword of keywords) {
-    if (normalized.includes(keyword)) {
-      return true;
-    }
-  }
-  return false;
 };
 
 export default function Map({ type, centre, radius }) {
@@ -53,23 +43,11 @@ export default function Map({ type, centre, radius }) {
 
   useEffect(() => {
     if (!map || !bounds) return () => {};
-    const timeout = setTimeout(() => {
-      const service = new window.google.maps.places.PlacesService(map);
-      service.nearbySearch({ bounds, type: lieu.filter }, (results, status) => {
-        if (status === window.google.maps.places.PlacesServiceStatus.OK)
-          setLocations(
-            results
-              .filter((result) => !lieu.keywords || matchesKeyword(result.name, lieu.keywords))
-              .map((result) => ({
-                id: result.reference,
-                name: result.name,
-                location: result.geometry.location,
-              })),
-          );
-      });
+    const timeout = setTimeout(async () => {
+      setLocations(await getPlaces(map, bounds, lieu, radius));
     }, DEBOUNCE_DELAY);
     return () => clearTimeout(timeout);
-  }, [map, bounds, lieu]);
+  }, [map, bounds, lieu, radius]);
 
   useEffect(() => {
     setLocations([]);

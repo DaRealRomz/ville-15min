@@ -20,7 +20,8 @@
     "icon": "https://maps.gstatic.com/mapfiles/ms2/micons/rangerstation.png",
     "type": "ecole",
     "filter": [
-      "primary_school"
+      "primary_school",
+      "secondary_school"
     ],
     "keywords": [
       "ecole",
